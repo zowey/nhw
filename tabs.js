@@ -5,3 +5,7 @@
  * Time: 16:39
  * To change this template use File | Settings | File Templates.
  */
+$('#myTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+})
