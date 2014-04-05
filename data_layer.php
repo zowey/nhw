@@ -57,4 +57,11 @@ function check_if_user_voted($comment_id){
         return true;
 
 }
+function get_user_rate($user_id, $product_id)
+{
+    $query = "select * from user_rate_product where user_id=$user_id and product_id=$product_id";
+    $result = mysql_query($query);
+    $row= mysql_fetch_assoc($result);
+    return $row;
+}
 ?>
