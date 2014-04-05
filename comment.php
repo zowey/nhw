@@ -1,46 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-
-    <title>Grid Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <script src="bootstrap-source/js/tab.js"></script>
-
-    <![endif]-->
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
+<script>
 
-<body>
+    $(document).ready(function()
+    {
+        $( "#form" ).submit(function(e) {
+            e.preventDefault();
+            var com =  $( "#komentar" ).val();
+
+            var url = "votes.php?comment_text="+com+"&product_id=1";
+            $( "#komentar" ).val("");
+            $.get(url,function(data){
+                $( "#comments" ).append( data );
+            });
+
+        });
+
+    });
+
+</script>
+
+<script type="text/javascript">
+    function upvote(id){
+        var a=$('#vote_'+id).text();
+        $('#vote_'+id).html(++a);
+
+        var url = 'votes.php?comment_id='+id;
+        $.get(url, function( data ) {
+        });
+        $('#upvote_'+id).hide();
+    }
+</script>
 
 <p>Comment: </p>
 
-<form id="form" action="comment.php" method="post">
+<form id="form" action="comment2.php" method="post">
     <!-- use this input to store the clicked button value -->
     <input type='hidden' name="action" />
     <textarea id="komentar"  rows="3" cols="50"></textarea>
@@ -50,29 +45,38 @@
 
 
 
-<script>
 
-  $(document).ready(function()
+    <?php
+    include 'data_layer.php';
+    if (!isset($_GET['order']))
     {
-$( "#form" ).submit(function(e) {
-    e.preventDefault();
-    var com =  $( "#komentar" ).val();
-    $( "p" ).append( com );
-    var url = "index.php?comment="+com;
+        $comm=get_comments_for_product(1);
+    }
+    else if ($_GET['order']=='time')
+        $comm=get_comments_for_product(1, 'time');
+?>
+    <a href="comment.php?order=time">Newest</a>
+    <a href="comment.php">Popular</a>
+<div id="comments">
+    <?php
 
-    $.get(url,function(data){
-    });
+        foreach ($comm as $com){
 
-});
+        ?>
+        <div class = "comment">
+            <?php if (!check_if_user_voted($com['id'])): ?>
 
-    });
+                <div  onclick="upvote(<?php echo $com['id']?>)" id="upvote_<?php echo $com['id']?>">
+                    +
+                </div>
+            <?php  endif; ?>
 
-</script>
+            <div id=vote_<?php echo $com['id']?>> <?= $com['votes'] ?>   </div>
+            <div class="comment_text">
+                <?= $com['comment'] ?>
+            </div>
+        </div>
+        <?php }
 
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-</body>
-</html>
+    ?>
+</div>

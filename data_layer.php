@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <?php
 include 'db.php';
 
@@ -17,8 +11,15 @@ function get_all_products($sort = "order by published DESC "){
     return $products;
 }
 
-function get_comments_for_product($product_id){
-    $query = "select * from comment where comment.product_id = $product_id";
+function get_comments_for_product($product_id, $sort='votes'){
+    if ($sort == 'time'){
+        $sort = 'order by published desc ';
+    }
+    else if ($sort== 'votes')
+    {
+        $sort = 'order by votes desc ';
+    }
+    $query = "select * from comment where comment.product_id = $product_id ".$sort;
     $result = mysql_query($query);
     $comments = array();
     while ($row = mysql_fetch_assoc($result)){
