@@ -1,0 +1,70 @@
+a {color:#F1601D;}
+#front {
+    background: #f1ad1d;
+    padding-bottom: 30px;
+}
+#second {background: #f1ad1d;}
+header {height:100px;line-height:100px;}
+.search {margin-top:33px;}
+#home-content {padding-top:30px;}
+#logo {
+
+}
+
+#slider {}
+#slider > div
+.carousel-control {background-image: none !important; !important;}
+
+.carousel-caption {
+    position: relative;
+    top:0;left:0;
+    text-align: left;
+}
+h3 {border-bottom: 1px solid #f1ad1d; display:inline-block;float:left; color:#444;}
+h3.white {color: #fff;}
+a.most-viewed {
+    padding:10px;
+    color:inherit;
+
+}
+a.most-viewed:hover {text-decoration: none;}
+.img-cont {position: relative;}
+.img-cont:hover .desc {display: block;}
+.meta {background: #eee;border:1px solid #eee;position:absolute;top:0;padding: 10px;width:100%;opacity:0.9;z-index:12;}
+.meta2 {line-height:30px; }
+.meta2 > span {display:block;padding-left: 30px;margin-right:20px;}
+.meta > span {display:block;height:20px;line-height: 24px;font-size:1.2em;font-weight: bold;padding-left: 30px;}
+span.star {background: url('img/star.png') no-repeat left center;}
+span.views {background: url('img/views.png') no-repeat left center;}
+.meta > p > span {display:block;}
+.desc {overflow: hidden;color:#000;position: absolute; z-index: 11;top:0;padding:20px;padding-top:50px;background:#fff;height:100%;opacity:0.7;display:none;}
+.table tr td:first-child {width:20%;text-align: right; border-right:2px solid #f1ad1d !important;font-weight: bold;}
+.table tr td {border:none !important;}
+.table {margin-top:20px;}
+.glyphicon-user {margin-right:10px;}
+.glyphicon-heart {font-size: 0.9em;color:#777;}
+.comment {border-top:2px solid #f1ad1d; padding:10px 0;}
+.comment:nth-of-type(1) {margin-top:20px;}
+.rate {font-size:1.1em;font-weight: bold;color:#777;}
+h2 {margin-top:0;}
+.moj {color:#aaa;margin-left:4px;}
+.moj:hover {color:#555;}
+.suggestion {margin-bottom:10px;color:#444;display: block;}
+.suggestion:nth-of-type(1) {margin-top:30px;}
+.suggestion:hover {color: inherit;text-decoration: none;}
+.nav-pills li.active a {background: #444 !important;}
+.nav-pills li.dropdown > a, .nav-pills li.open > a.dropdown-toggle {color: #444 !important;background: none !important;}
+.nav-pills li.dropdown > a:hover {background: none !important;}
+/*
+.carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
+    max-width: none;
+}*/
+.jumbotron {background: none;font-style: italic;}
+#categories {background: none;height:300px;}
+footer
+* {font-family: Arial, sans-serif !important;}
